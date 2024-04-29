@@ -1,40 +1,79 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false); // État pour contrôler la visibilité du menu sur mobile
-  const headerRef = useRef(null); // Référence au header pour accéder à ses dimensions
-  const [headerHeight, setHeaderHeight] = useState(0); // État pour stocker la hauteur du header
 
-  useEffect(() => {
-    if (headerRef.current) {
-      setHeaderHeight(headerRef.current.clientHeight);
+  // Variants pour l'animation du menu
+  const menuVariants = {
+    open: {
+      opacity: 1,
+      y: 0,
+      display: "block",
+      transition: {
+        y: { stiffness: 1000, velocity: -100 },
+        duration: 0.5
+      }
+    },
+    closed: {
+      opacity: 0,
+      y: "-100%",
+      transitionEnd: {
+        display: "none"
+      },
+      transition: {
+        y: { stiffness: 1000 },
+        duration: 0.2
+      }
     }
-  }, []);
+  };
 
   return (
-    <header ref={headerRef} className="bg-black text-gray-100 p-4 relative flex justify-between items-center">
+    <header className="bg-black text-gray-100 p-4 relative flex justify-between items-center">
       <Link to="/" className="text-2xl md:text-3xl font-bold text-white hover:text-gray-300 transition-colors duration-200 z-10">BEAT FEST</Link>
       
       <button className="text-gray-100 md:hidden mr-4 z-30" onClick={() => setIsOpen(!isOpen)}>
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
         </svg>
       </button>
       
-      <nav className={`absolute md:relative top-full md:top-auto right-0 md:flex md:items-center w-full md:w-auto bg-black md:bg-transparent z-20 ${isOpen ? 'block' : 'hidden'} md:block`}>
-        <ul className="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0 p-4 md:p-0">
-          <li><Link to="/evenement" className="text-base md:text-lg hover:text-gray-300 transition-colors duration-200 ease-in-out">L'événement</Link></li>
-          <li><Link to="/billeterie" className="text-base md:text-lg hover:text-gray-300 transition-colors duration-200 ease-in-out">Billetterie</Link></li>
-          <li><Link to="/artistes" className="text-base md:text-lg hover:text-gray-300 transition-colors duration-200 ease-in-out">Artistes</Link></li>
-          <li><Link to="/infos" className="text-base md:text-lg hover:text-gray-300 transition-colors duration-200 ease-in-out">Infos Pratiques</Link></li>
-          <li><Link to="/contact" className="text-base md:text-lg hover:text-gray-300 transition-colors duration-200 ease-in-out">Contact</Link></li>
-          <li className="md:hidden"><Link to="/panier" className="text-base md:text-lg hover:text-gray-300 transition-colors duration-200 ease-in-out">Panier</Link></li> {/* Mobile-only link */}
+      {/* Utiliser AnimatePresence uniquement pour le mode mobile */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.nav
+            className="absolute top-full left-0 w-full bg-black md:hidden"
+            variants={menuVariants}
+            initial="closed"
+            animate="open"
+            exit="closed"
+          >
+            <ul className="flex flex-col space-y-4 p-4">
+              <li><Link to="/evenement" onClick={() => setIsOpen(false)} className="text-base hover:text-gray-300 transition-colors duration-200 ease-in-out">L'événement</Link></li>
+              <li><Link to="/billeterie" onClick={() => setIsOpen(false)} className="text-base hover:text-gray-300 transition-colors duration-200 ease-in-out">Billetterie</Link></li>
+              <li><Link to="/artistes" onClick={() => setIsOpen(false)} className="text-base hover:text-gray-300 transition-colors duration-200 ease-in-out">Artistes</Link></li>
+              <li><Link to="/infos" onClick={() => setIsOpen(false)} className="text-base hover:text-gray-300 transition-colors duration-200 ease-in-out">Infos Pratiques</Link></li>
+              <li><Link to="/contact" onClick={() => setIsOpen(false)} className="text-base hover:text-gray-300 transition-colors duration-200 ease-in-out">Contact</Link></li>
+            </ul>
+          </motion.nav>
+        )}
+      </AnimatePresence>
+
+      {/* Toujours visible sur les écrans de bureau */}
+      <nav className="hidden md:flex md:items-center md:w-auto">
+        <ul className="flex flex-row space-x-4">
+          <li><Link to="/evenement" className="text-lg hover:text-gray-300 transition-colors duration-200 ease-in-out">L'événement</Link></li>
+          <li><Link to="/billeterie" className="text-lg hover:text-gray-300 transition-colors duration-200 ease-in-out">Billetterie</Link></li>
+          <li><Link to="/artistes" className="text-lg hover:text-gray-300 transition-colors duration-200 ease-in-out">Artistes</Link></li>
+          <li><Link to="/infos" className="text-lg hover:text-gray-300 transition-colors duration-200 ease-in-out">Infos Pratiques</Link></li>
+          <li><Link to="/contact" className="text-lg hover:text-gray-300 transition-colors duration-200 ease-in-out">Contact</Link></li>
+          <li><Link to="/panier" className="text-lg hover:text-gray-300 transition-colors duration-200 ease-in-out">Panier</Link></li>
         </ul>
       </nav>
 
-      <Link to="/panier" className="hidden md:block hover:text-gray-300"> {/* Desktop-only link */}
-        <img src="../src/assets/Panier.png" alt="Image de panier" className="w-8 h-8"/>
+      <Link to="/panier" className="hidden md:block hover:text-gray-300">
+        <img src="../src/assets/Panier.png" alt="Panier" className="w-8 h-8"/>
       </Link>
     </header>
   );
