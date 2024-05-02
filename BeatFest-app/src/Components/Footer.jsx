@@ -5,9 +5,6 @@ const Footer = () => {
   return (
     <footer className="bg-black text-white p-4">
       <div className="container mx-auto text-center">
-        <div className="mb-4">
-          <h5 className="text-lg font-bold">BEAT FEST</h5>
-        </div>
         <div className="flex justify-center space-x-8 mb-4">
           <Link to="/mentions-legales" className="hover:text-gray-300">Mentions légales</Link>
           <Link to="/politique-de-confidentialite" className="hover:text-gray-300">Politique de confidentialité</Link>

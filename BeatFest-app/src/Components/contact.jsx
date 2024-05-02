@@ -17,7 +17,7 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert('Message envoyé! Nous vous recontacterons bientôt.');
+    alert('Votre message a été envoyé. Nous vous recontacterons bientôt.');
     setFormData({
       name: '',
       email: '',
@@ -26,57 +26,54 @@ const Contact = () => {
   };
 
   return (
-    <div className="container mx-auto p-6 bg-gray-800 text-gray-200">
-      <h1 className="text-3xl font-bold text-center mb-6">Contactez-nous</h1>
+    <div className="container mx-auto px-4 py-8">
       <div className="flex flex-wrap justify-center">
-        <div className="w-full md:w-1/2 bg-gray-700 rounded shadow-lg p-6 m-4">
-          <form onSubmit={handleSubmit}>
-            <label htmlFor="name" className="block text-sm font-bold mb-2">Nom:</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              className="w-full px-3 py-2 border border-gray-600 rounded shadow appearance-none text-gray-300 leading-tight focus:outline-none focus:border-gray-400 transition duration-200"
-              required
-            />
-
-            <label htmlFor="email" className="block text-sm font-bold mb-2">Email:</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              className="w-full px-3 py-2 border border-gray-600 rounded shadow appearance-none text-gray-300 leading-tight focus:outline-none focus:border-gray-400 transition duration-200"
-              required
-            />
-
-            <label htmlFor="message" className="block text-sm font-bold mb-2">Message:</label>
-            <textarea
-              id="message"
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              rows="4"
-              className="w-full px-3 py-2 border border-gray-600 rounded shadow appearance-none text-gray-300 leading-tight focus:outline-none focus:border-gray-400 transition duration-200"
-              required
-            ></textarea>
-
-            <button type="submit" className="bg-gray-600 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-4 transition duration-300">
+        <div className="w-full max-w-lg bg-white p-6 rounded shadow-lg">
+          <h1 className="text-xl md:text-2xl font-bold text-center mb-6">Contactez-nous</h1>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <label htmlFor="name" className="block text-sm md:text-base font-semibold text-gray-800">Nom</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                className="w-full p-2 border border-gray-300 rounded mt-1 focus:outline-none focus:border-black"
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor="email" className="block text-sm md:text-base font-semibold text-gray-800">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                className="w-full p-2 border border-gray-300 rounded mt-1 focus:outline-none focus:border-black"
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor="message" className="block text-sm md:text-base font-semibold text-gray-800">Message</label>
+              <textarea
+                id="message"
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                rows="4"
+                className="w-full p-2 border border-gray-300 rounded mt-1 focus:outline-none focus:border-black"
+                required
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              className="w-full bg-black text-white p-2 rounded hover:scale-110 focus:scale-90 transition-transform duration-300"
+              >
               Envoyer
             </button>
           </form>
-        </div>
-
-        <div className="w-full md:w-1/2 p-6 m-4">
-          <h2 className="text-xl font-bold mb-4">Autres moyens de contact:</h2>
-          <p>Vous pouvez également nous joindre par:</p>
-          <ul className="list-disc pl-5">
-            <li>Téléphone: 0612345678</li>
-            <li>Email: contact@beatfest.com</li>
-          </ul>
         </div>
       </div>
     </div>
