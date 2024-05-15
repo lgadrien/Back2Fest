@@ -8,7 +8,6 @@ import Footer from './Components/Footer';
 import Evenement from './Components/evenement'
 import Billeterie from './Components/billeterie'
 import Artistes from './Components/artistes'
-import InfoPratiques from './Components/infos-pratiques'
 import Panier from './Components/panier';
 // Components du Footer
 import Contact from '../src/Components/contact';
@@ -27,9 +26,8 @@ const App = () => {
           {/* Pages de la navbar */}
           <Route path="/" element={<Home/>} />
           <Route path="/evenement" element={<Evenement/>}/>
-          <Route path="/billeterie" element={<Billeterie/>}/> 
+          <Route path="/billetterie" element={<Billeterie/>}/> 
           <Route path="/artistes" element={<Artistes/>}/>
-          <Route path="/infos" element={<InfoPratiques/>}/>
           <Route path="/panier" element={<Panier/>}/>
           {/* Pages du footer */}
           <Route path="/contact" element={<Contact/>} />

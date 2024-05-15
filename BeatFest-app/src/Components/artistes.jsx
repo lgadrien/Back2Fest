@@ -7,7 +7,7 @@ const artistesData = [
     { id: 3, nom: 'SCH', photoUrl: 'https://upload.wikimedia.org/wikipedia/commons/3/35/Festival_des_Vieilles_Charrues_2022_-_SCH_-_038_%28cropped%29.jpg' },
     { id: 4, nom: 'Gims', photoUrl: 'https://www.xalimasn.com/wp-content/uploads/2020/10/pp-gims.jpg' },
     { id: 5, nom: 'Gazo', photoUrl: 'https://cdn.shopify.com/s/files/1/0272/9059/9521/files/GAZO-_RAPPEUR_-BIOGRAPHIE_-PARCOURS-AGE-FORTUNE-FEMME-URB1_-3_600x600.png?v=1660560210' },
-    { id: 6, nom: 'Nekfeu', photoUrl: 'https://i.pinimg.com/1200x/36/2e/3a/362e3ae7d6b99932d25d9999d06113d9.jpg' }
+    { id: 6, nom: 'Nekfeu', photoUrl: 'https://i.pinimg.com/1200x/36/2e/3a/362e3ae7d6b99932d25d9999d06113d9.jpg' },
 ];
 
 const Artistes = () => {
@@ -21,19 +21,27 @@ const Artistes = () => {
 
     return (
         <div className='artistes-container'>
-            <h1 className='mt-5'>Artistes</h1>
-            <div className='grid grid-cols-3 gap-4'>
+<div className='flex items-center space-x-2 pl-10 pt-5 text-white text-lg sm:text-2xl font-sans'>
+    <a href='/' className='hover:underline' title='Accueil'>Accueil</a>
+    <p>/</p>
+    <a href='/evenement' className='hover:underline' title='Evenement'>Evenement</a>
+    <p>/</p>
+    <span>Artistes</span>
+</div>
+
+            <h1 className='mt-5 pb-5'>Artistes que nous allons accueillir</h1>
+            <div className='grid grid-cols-3 gap-4 pb-10'>
                 {artistesData.map((artiste, index) => (
                     <div key={artiste.id} className='artiste mt-10'>
                         <div className='image-container'>
                             <img 
                                 src={artiste.photoUrl} 
                                 alt={artiste.nom} 
-                                className={`rounded-full w-48 h-48 object-cover ${visible[index] ? 'normal' : 'blurred'}`} 
+                                className={`rounded-full w-48 h-48 object-cover ${visible[index] ? '' : 'blurred'}`} 
                             />
-                            <button onClick={() => toggleVisibility(index)} className='reveal-btn'>Afficher</button>
+                            <button onClick={() => toggleVisibility(index)} className='reveal-btn'>Spoiler</button>
                         </div>
-                        <h2>{artiste.nom}</h2>
+                        {visible[index] && <h2 className="nom-artiste">{artiste.nom}</h2>}
                     </div>
                 ))}
             </div>

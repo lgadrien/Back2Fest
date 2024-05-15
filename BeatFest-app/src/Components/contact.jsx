@@ -27,6 +27,18 @@ const Contact = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
+                  <style>
+                {`
+                    #root {
+                    background-color: #DCDCDC;
+                }
+                `}
+            </style>
+            <div className='flex items-center space-x-2 pl-10 pt-5 text-white text-lg sm:text-2xl font-sans'>
+    <a href='/' className='hover:underline' title='Accueil'>Accueil</a>
+    <p>/</p>
+    <span>Contact</span>
+</div>
       <div className="flex flex-wrap justify-center">
         <div className="w-full max-w-lg bg-white p-6 rounded shadow-lg">
           <h1 className="text-xl md:text-2xl font-bold text-center mb-6">Contactez-nous</h1>

@@ -1,5 +1,8 @@
+#root {
+    background-color: #DCDCDC;
+}
+
 .artistes-container {
-    text-align: center;
     padding: 20px;
 }
 
@@ -7,31 +10,52 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #FFFFFF;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.artiste:hover {
+    transform: translateY(-5px);
 }
 
 .image-container {
     position: relative;
-    margin-bottom: 10px;
 }
 
-.image-container img.blurred {
-    filter: blur(8px);
+.artiste img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: filter 0.3s ease;
 }
 
-.image-container img.normal {
-    filter: none;
+.artiste img.blurred {
+    filter: blur(5px);
 }
 
 .reveal-btn {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 10px 20px;
-    background-color: rgba(255, 255, 255, 0.7);
+    bottom: 5px;
+    right: 5px;
+    padding: 5px 10px;
+    background-color: #000;
+    color: #FFF;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
-    border-radius: 20px;
+    z-index: 1;
 }
 
+.reveal-btn:hover {
+    background-color: #333;
+}
+
+.nom-artiste {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
