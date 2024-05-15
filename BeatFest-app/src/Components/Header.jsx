@@ -51,7 +51,7 @@ const Header = () => {
             exit="closed"
           >
             <ul className="flex flex-col space-y-4 p-4">
-              <li><Link to="/evenement" onClick={() => setIsOpen(false)} className="text-lg hover:text-gray-300 transition-colors duration-200 ease-in-out">L'événement</Link></li>
+              <li><Link to="/evenement" onClick={() => setIsOpen(false)} className="text-lg hover:text-gray-300 transition-colors duration-200 ease-in-out">L'évènement</Link></li>
               <li><Link to="/billetterie" onClick={() => setIsOpen(false)} className="text-lg hover:text-gray-300 transition-colors duration-200 ease-in-out">Billetterie</Link></li>
               <li><Link to="/artistes" onClick={() => setIsOpen(false)} className="text-lg hover:text-gray-300 transition-colors duration-200 ease-in-out">Artistes</Link></li>
               <li><Link to="/infos" onClick={() => setIsOpen(false)} className="text-lg hover:text-gray-300 transition-colors duration-200 ease-in-out">Infos Pratiques</Link></li>
@@ -65,8 +65,8 @@ const Header = () => {
       {/* Desktop Navigation */}
       <nav className="hidden md:flex md:items-center md:justify-center md:w-full">
         <ul className="flex flex-row space-x-4 justify-center">
-          <li><Link to="/evenement" className="text-lg hover:text-gray-300 transition-colors duration-200 ease-in-out">L'événement</Link></li>
-          <li><Link to="/billeterie" className="text-lg hover:text-gray-300 transition-colors duration-200 ease-in-out">Billetterie</Link></li>
+          <li><Link to="/evenement" className="text-lg hover:text-gray-300 transition-colors duration-200 ease-in-out">L'évènement</Link></li>
+          <li><Link to="/billetterie" className="text-lg hover:text-gray-300 transition-colors duration-200 ease-in-out">Billetterie</Link></li>
           <li><Link to="/artistes" className="text-lg hover:text-gray-300 transition-colors duration-200 ease-in-out">Artistes</Link></li>
           <li><Link to="/infos" className="text-lg hover:text-gray-300 transition-colors duration-200 ease-in-out">Infos Pratiques</Link></li>
           <li><Link to="/contact" className="text-lg hover:text-gray-300 transition-colors duration-200 ease-in-out">Contact</Link></li>

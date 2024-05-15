@@ -42,7 +42,7 @@ const Home = () => {
             Bienvenue au <span className="gradient-scroll">Beat Fest</span>!
           </h1>
           <p className="text-xl md:text-2xl mb-8 text-center text-white">Rejoignez-nous pour l'expérience musicale ultime!</p>
-          <MotionLink to="/billeterie" className="bg-white text-black font-bold py-2 px-4 rounded shadow"
+          <MotionLink to="/billetterie" className="bg-white text-black font-bold py-2 px-4 rounded shadow"
             whileHover={{ scale: 1.1, boxShadow: "0px 0px 8px rgba(0, 0, 0, 0.8)" }}
             whileTap={{ scale: 0.9, boxShadow: "0px 0px 5px rgba(0, 0, 0, 0.5)" }}>
               Achetez vos billets maintenant

@@ -22,32 +22,36 @@ function Billetterie() {
 
   return (
     <div className='text-black bg-slate-800'>
-      <ul style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
-        gap: '16px',
-        listStyle: 'none',
-        padding: '10px',
-        paddingleft: '30px',
-      }}>
-        {data.map(item => (
-          <li key={item.id} className='p-10'>
-            <img 
-              src={item.image_path} 
-              style={{ width: '100%', transition: 'transform 0.3s' }}
-              className="image-hover"
-              onClick={() => handleImageClick(item.id)}
-            />
-          </li>
-        ))}
-      </ul>
-      <style>
-        {`
-          .image-hover:hover {
-            transform: scale(1.05);
-          }
-        `}
-      </style>
+      <div className='flex space-x-1 pl-10 pt-5 text-white text-2xl'>
+          <a href='/' title='Accueil'>Accueil</a><p>/</p>
+          <a href='/billetterie' title='Billetterie'>Billetterie</a>
+      </div>
+        <ul style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
+          gap: '16px',
+          listStyle: 'none',
+          padding: '10px',
+          paddingleft: '30px',
+        }}>
+          {data.map(item => (
+            <li key={item.id} className='p-10'>
+              <img 
+                src={item.image_path} 
+                style={{ width: '100%', transition: 'transform 0.3s' }}
+                className="image-hover"
+                onClick={() => handleImageClick(item.id)}
+              />
+            </li>
+          ))}
+        </ul>
+        <style>
+          {`
+            .image-hover:hover {
+              transform: scale(1.05);
+            }
+          `}
+        </style>
     </div>
   );
 };

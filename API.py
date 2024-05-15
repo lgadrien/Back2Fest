@@ -11,24 +11,27 @@ data_list = [
         'id': str(uuid.uuid4())[:8],
         'image_path': ['https://i.imgur.com/DgGe2Gi.png'],
         'name': 'Pass Classique',
-        'prix': '49.00',
-        'jour': '1',
+        'prix_1jours': '45.00',
+        'prix_2jours': '70.00',
+        'prix_3jours': '110.00',
         'description': "Accédez à une journée inoubliable de musique, d'art et de divertissement avec notre Pass Classique. Vivez l'essence du festival en profitant d'une journée complète de performances en direct, d'expériences artistiques et de rencontres uniques."
     },
     {
         'id': str(uuid.uuid4())[:8],
         'image_path': ['https://i.imgur.com/wp8PgvX.png'],
         'name': 'Pass Premium',
-        'prix': '99.00',
-        'jour': '2',
+        'prix_1jours': '80.00',
+        'prix_2jours': '130.00',
+        'prix_3jours': '190.00',
         'description': "Optez pour notre Pass Premium et prolongez votre expérience festivalière sur deux jours. Profitez de performances exclusives, de zones VIP et d'avantages supplémentaires pour vivre pleinement l'énergie du festival avec vos amis et votre famille."
     },
     {
         'id': str(uuid.uuid4())[:8],
         'image_path': ['https://i.imgur.com/fGCM973.png'],
         'name': 'Pass VIP',
-        'prix': '139.00',
-        'jour': '3',
+        'prix_1jours': '150.00',
+        'prix_2jours': '270.00',
+        'prix_3jours': '380.00',
         'description': "Plongez dans le luxe ultime du festival avec notre Pass VIP. Trois jours de plaisir illimité vous attendent, avec un accès privilégié aux meilleures zones de spectacle, aux services VIP et à des expériences exclusives. Vivez le festival dans le confort et le style avec notre Pass VIP."
     },
     {
@@ -36,7 +39,6 @@ data_list = [
         'image_path': ['https://i.imgur.com/GGQifrA.png'],
         'name': 'Pass Camping',
         'prix': '29.00',
-        'jour': '1',
         'description': "Plongez dans le luxe ultime du festival avec notre Pass VIP. Trois jours de plaisir illimité vous attendent, avec un accès privilégié aux meilleures zones de spectacle, aux services VIP et à des expériences exclusives. Vivez le festival dans le confort et le style avec notre Pass VIP."
     },
     {
