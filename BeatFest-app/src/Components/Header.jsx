@@ -50,15 +50,9 @@ const Header = () => {
             animate="open"
             exit="closed"
           >
-<<<<<<< Updated upstream
-            <ul className="flex flex-col space-y-4 p-4">
-              <li><Link to="/evenement" onClick={() => setIsOpen(false)} className="text-lg hover:text-gray-300 transition-colors duration-200 ease-in-out">L'événement</Link></li>
-              <li><Link to="/billeterie" onClick={() => setIsOpen(false)} className="text-lg hover:text-gray-300 transition-colors duration-200 ease-in-out">Billetterie</Link></li>
-=======
             <ul className="flex flex-col space-y-4 p-4" style={{zIndex: -2000}}>
               <li><Link to="/evenement" onClick={() => setIsOpen(false)} className="text-lg hover:text-gray-300 transition-colors duration-200 ease-in-out">L'évènement</Link></li>
               <li><Link to="/billetterie" onClick={() => setIsOpen(false)} className="text-lg hover:text-gray-300 transition-colors duration-200 ease-in-out">Billetterie</Link></li>
->>>>>>> Stashed changes
               <li><Link to="/artistes" onClick={() => setIsOpen(false)} className="text-lg hover:text-gray-300 transition-colors duration-200 ease-in-out">Artistes</Link></li>
               <li><Link to="/contact" onClick={() => setIsOpen(false)} className="text-lg hover:text-gray-300 transition-colors duration-200 ease-in-out">Contact</Link></li>
               <li><Link to="/panier" onClick={() => setIsOpen(false)} className="text-lg hover:text-gray-300 transition-colors duration-200 ease-in-out">Panier</Link></li>

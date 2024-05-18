@@ -4,11 +4,6 @@ import '../CSS/evenement.css';
 
 const Evenement = () => {
     return (
-<<<<<<< Updated upstream
-        <div>
-            <h1>Evenement</h1>  
-        </div>
-=======
 
         <motion.div
             initial={{ opacity: 0 }}
@@ -78,7 +73,6 @@ const Evenement = () => {
             </div>
             
         </motion.div>
->>>>>>> Stashed changes
     );
 };
 
