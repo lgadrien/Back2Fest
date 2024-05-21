@@ -1,61 +1,67 @@
-#root {
-    background-color: #DCDCDC;
-}
-
 .artistes-container {
     padding: 20px;
+    background-color: #1a202c; /* bg-gray-900 */
+    color: #edf2f7; /* text-white */
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.date-column {
+    background-color: #2d3748; /* dark:bg-gray-800 */
+    padding: 20px;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.date-column:hover {
+    transform: scale(1.05);
+}
+
+.nom-artiste {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+button.reveal-btn {
+    background-color: #4299e1; /* bg-blue-500 */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button.reveal-btn:hover {
+    background-color: #3182ce; /* hover:bg-blue-600 */
 }
 
 .artiste {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    text-align: center;
+    background-color: #2d3748; /* dark:bg-gray-800 */
     padding: 20px;
-    border-radius: 10px;
-    background-color: #FFFFFF;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
     transition: transform 0.3s ease;
 }
 
 .artiste:hover {
-    transform: translateY(-5px);
-}
-
-.image-container {
-    position: relative;
-}
-
-.artiste img {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    object-fit: cover;
-    transition: filter 0.3s ease;
-}
-
-.artiste img.blurred {
-    filter: blur(5px);
-}
-
-.reveal-btn {
-    position: absolute;
-    bottom: 5px;
-    right: 5px;
-    padding: 5px 10px;
-    background-color: #000;
-    color: #FFF;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    z-index: 1;
-}
-
-.reveal-btn:hover {
-    background-color: #333;
+    transform: scale(1.05);
 }
 
 .nom-artiste {
-    margin-top: 10px;
-    font-size: 18px;
+    font-size: 1.5rem;
     font-weight: bold;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.blurred {
+    filter: blur(5px);
 }

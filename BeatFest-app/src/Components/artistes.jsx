@@ -10,13 +10,20 @@ const artistesData = [
     { id: 6, nom: 'Nekfeu', photoUrl: 'https://i.pinimg.com/1200x/36/2e/3a/362e3ae7d6b99932d25d9999d06113d9.jpg', description: "Description de Nekfeu" },
 ];
 
-const Artistes = () => {
-    const [visible, setVisible] = useState(Array(artistesData.length).fill(false));
+const schedule = {
+    '18 juillet 2025': [artistesData[0], artistesData[1]],
+    '19 juillet 2025': [artistesData[2], artistesData[3]],
+    '20 juillet 2025': [artistesData[4], artistesData[5]],
+};
 
-    const toggleVisibility = (index) => {
-        const newVisible = [...visible];
-        newVisible[index] = !newVisible[index];
-        setVisible(newVisible);
+const Calendar = () => {
+    const dates = Object.keys(schedule);
+    const [visible, setVisible] = useState(
+        Object.fromEntries(artistesData.map(artiste => [artiste.id, false]))
+    );
+
+    const toggleVisibility = (id) => {
+        setVisible(prevVisible => ({ ...prevVisible, [id]: !prevVisible[id] }));
     };
 
     return (
@@ -29,25 +36,37 @@ const Artistes = () => {
                 <span>Artistes</span>
             </div>
 
-            <h1 className='mt-5 pb-5'>Programmation des artistes - 18 au 21 Juillet 2024</h1>
-            <div className='grid grid-cols-5 gap-4 pb-10'>
-                {artistesData.map((artiste, index) => (
-                    <div key={artiste.id} className='artiste'>
-                        <div className='image-container'>
-                            <img 
-                                src={artiste.photoUrl} 
-                                alt={artiste.nom} 
-                                className={`rounded-full w-48 h-48 object-cover ${visible[index] ? '' : 'blurred'}`} 
-                            />
-                            <button onClick={() => toggleVisibility(index)} className='reveal-btn'>Spoiler</button>
-                        </div>
-                        {visible[index] && <h2 className="nom-artiste">{artiste.nom}</h2>}
-                        {visible[index] && <p>{artiste.description}</p>}
+            <h1 className='mt-5 pb-5'>Programmation des artistes - 18 au 20 Juillet 2025</h1>
+
+            <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
+                <div className='flex justify-center'>
+                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pb-10'>
+                        {dates.map(date => (
+                            <div key={date} className='date-column ms-12 mt-5'>
+                                <h2 className='text-center font-bold text-xl mb-4'>{date}</h2>
+                                {schedule[date].map(artiste => (
+                                    <div key={artiste.id} className='artiste mb-6'>
+                                        <div className='image-container mb-2 relative'>
+                                            <img 
+                                                src={artiste.photoUrl} 
+                                                alt={artiste.nom} 
+                                                className={`rounded-full w-48 h-48 object-cover mx-auto ${visible[artiste.id] ? '' : 'blurred'}`} 
+                                            />
+                                            <button onClick={() => toggleVisibility(artiste.id)} className='reveal-btn absolute bottom-2 left-1/2 transform -translate-x-1/2'>
+                                                {visible[artiste.id] ? 'Cacher' : 'Spoiler'}
+                                            </button>
+                                        </div>
+                                        {visible[artiste.id] && <h3 className="nom-artiste text-center">{artiste.nom}</h3>}
+                                        {visible[artiste.id] && <p className="text-center">{artiste.description}</p>}
+                                    </div>
+                                ))}
+                            </div>
+                        ))}
                     </div>
-                ))}
+                </div>
             </div>
         </div>
     );
 };
 
-export default Artistes;
+export default Calendar;

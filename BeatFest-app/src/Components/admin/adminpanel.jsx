@@ -49,7 +49,7 @@ const AdminPanel = () => {
         </button>
         </div>
         <div className="flex justify-end">
-          <p className="text-gray-800 dark:text-gray-100">Nombre de clients : {users.length}</p>
+          <p className="text-gray-800 dark:text-gray-100">Nombre de festivaliers : {users.length}</p>
         </div>
         <h1 className="text-3xl font-semibold text-center mb-8 text-gray-900 dark:text-gray-100">Panneau de gestion des festivaliers</h1>
         <div className="overflow-x-auto">

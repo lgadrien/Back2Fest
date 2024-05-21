@@ -168,7 +168,7 @@ app.post('/billets', (req, res) => {
   const { nom, prenom, email, billet } = req.body;
   console.log('Requête POST /billets reçue avec les données:', req.body);
 
-  db.query('INSERT INTO billets (nom, prenom, email, ticketType) VALUES (?, ?, ?, ?)',
+  db.query('INSERT INTO billets (nom, prenom, email, bille) VALUES (?, ?, ?, ?)',
     [nom, prenom, email, billet], (err, result) => {
     if (err) {
       console.error("Erreur lors de l'envoi des données du billet: " + err.message);
@@ -178,4 +178,27 @@ app.post('/billets', (req, res) => {
       res.status(201).send('Billet créé avec succès.');
     }
   });
+});
+
+// LOGIN  ------------------------------------------------------------------------------------------------------------------------------------------------ 
+
+app.post('/login', (req, res) => {
+  const { email, password } = req.body;
+  if (email && password) {
+      db.query('SELECT * FROM admins WHERE email = ? AND password = ?', [email, password], (error, results) => {
+          if (error) {
+              console.error('Erreur lors de la tentative de connexion: ' + error.message);
+              res.status(500).send('Erreur lors de la vérification des informations de connexion.');
+          } else if (results.length > 0) {
+              console.log('Connexion réussie pour l\'utilisateur ' + email + '.');
+              res.send('Connexion réussie.');
+          } else {
+              console.log('Identifiant ou mot de passe incorrect pour l\'utilisateur ' + email + '.');
+              res.status(401).send('Identifiant ou mot de passe incorrect.');
+          }
+      });
+  } else {
+      console.log('Identifiant et mot de passe requis.');
+      res.status(400).send('Veuillez entrer un identifiant et un mot de passe.');
+  }
 });

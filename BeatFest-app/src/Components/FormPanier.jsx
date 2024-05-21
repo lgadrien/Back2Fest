@@ -30,7 +30,7 @@ function FormPanier() {
 
   return (
     <div className='flex-col justify-center'>
-      <p className='flex justify-center p-10 text-2xl'>Entrez votre Nom & Prénom pour recevoir vos billets :</p>
+      <p className='flex justify-center p-10 text-2xl'>Entrez votre Nom & Prénom ainsi que votre mail pour recevoir vos billets :</p>
       <div className="flex justify-center items-center">
         <form onSubmit={handleSubmit} className="flex flex-col w-full md:w-2/3 lg:w-1/2 gap-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
