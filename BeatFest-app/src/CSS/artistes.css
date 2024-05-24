@@ -1,38 +1,67 @@
 .artistes-container {
-    text-align: center;
     padding: 20px;
-    
-}
-
-.artiste {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    background-color: #1a202c; /* bg-gray-900 /
+    color: #edf2f7; / text-white /
 }
 
 .image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
-    margin-bottom: 10px;
 }
 
-.image-container img.blurred {
-    filter: blur(8px);
+.date-column {
+    background-color: #2d3748; / dark:bg-gray-800 /
+    padding: 20px;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
 }
 
-.image-container img.normal {
-    filter: none;
+.date-column:hover {
+    transform: scale(1.05);
 }
 
-.reveal-btn {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 10px 20px;
-    background-color: rgba(255, 255, 255, 0.7);
+.nom-artiste {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+button.reveal-btn {
+    background-color: #4299e1; / bg-blue-500 /
+    color: white;
     border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
     cursor: pointer;
-    border-radius: 20px;
 }
 
+button.reveal-btn:hover {
+    background-color: #3182ce; / hover:bg-blue-600 /
+}
+
+.artiste {
+    text-align: center;
+    background-color: #2d3748; / dark:bg-gray-800 */
+    padding: 20px;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.artiste:hover {
+    transform: scale(1.05);
+}
+
+.nom-artiste {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.blurred {
+    filter: blur(5px);
+}

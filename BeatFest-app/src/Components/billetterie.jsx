@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Billetterie() {
   const [data, setData] = useState([]);
@@ -14,6 +14,10 @@ function Billetterie() {
       .catch(error => {
         console.error('Erreur lors de la récupération des données :', error);
       });
+  }, []);
+
+  useEffect(() => {
+    document.title = 'Beat Fest - Billetterie';
   }, []);
 
   const handleImageClick = (id) => {

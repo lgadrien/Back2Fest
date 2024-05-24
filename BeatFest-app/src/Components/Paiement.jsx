@@ -1,16 +1,48 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/fTBfjpvgQSD
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
-import { CardTitle, CardDescription, CardHeader, CardContent, CardFooter, Card } from "@/components/ui/card"
-import { RadioGroupItem, RadioGroup } from "@/components/ui/radio-group"
-import { Label } from "@/components/ui/label"
-import { Input } from "@/components/ui/input"
-import { SelectValue, SelectTrigger, SelectItem, SelectContent, Select } from "@/components/ui/select"
-import { Button } from "@/components/ui/button"
+import React, { useState } from 'react';
+import {
+  CardTitle, CardDescription, CardHeader, CardContent, CardFooter, Card,
+  RadioGroupItem, RadioGroup, Label, Input, SelectValue, SelectTrigger, SelectItem, SelectContent, Select, Button
+} from "@/components/ui";
+import { CreditCardIcon, WalletCardsIcon, BanknoteIcon } from 'your-icon-library'; // Adjust the import based on your setup
 
-export default function Component() {
+export default function PaymentComponent() {
+  const [formData, setFormData] = useState({
+    name: '',
+    number: '',
+    month: '',
+    year: '',
+    cvc: '',
+    paymentMethod: 'card'
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSelectChange = (name, value) => {
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch('http://localhost:3000/process-payment', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await response.json();
+      console.log('Payment processed:', data);
+      // Handle success (e.g., navigate to a confirmation page)
+    } catch (error) {
+      console.error('Payment processing error:', error);
+      // Handle error
+    }
+  };
+
   return (
     <Card className="w-full max-w-md">
       <CardHeader>
@@ -18,33 +50,28 @@ export default function Component() {
         <CardDescription>Sélectionnez votre méthode de paiement préférée pour finaliser votre achat.</CardDescription>
       </CardHeader>
       <CardContent className="grid gap-4">
-        <RadioGroup className="grid grid-cols-3 gap-4" defaultValue="card">
+        <RadioGroup
+          className="grid grid-cols-3 gap-4"
+          defaultValue="card"
+          onValueChange={(value) => handleSelectChange('paymentMethod', value)}
+        >
           <div>
             <RadioGroupItem className="peer sr-only" id="card" value="card" />
-            <Label
-              className="flex flex-col items-center justify-between rounded-md border-2 border-gray-100 bg-white p-4 hover:bg-gray-100 hover:text-gray-900 peer-data-[state=checked]:border-gray-900 [&:has([data-state=checked])]:border-gray-900 dark:border-gray-800 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:peer-data-[state=checked]:border-gray-50 dark:[&:has([data-state=checked])]:border-gray-50"
-              htmlFor="card"
-            >
+            <Label htmlFor="card" className="flex flex-col items-center">
               <CreditCardIcon className="mb-3 h-6 w-6" />
               Carte bancaire
             </Label>
           </div>
           <div>
             <RadioGroupItem className="peer sr-only" id="wallet" value="wallet" />
-            <Label
-              className="flex flex-col items-center justify-between rounded-md border-2 border-gray-100 bg-white p-4 hover:bg-gray-100 hover:text-gray-900 peer-data-[state=checked]:border-gray-900 [&:has([data-state=checked])]:border-gray-900 dark:border-gray-800 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:peer-data-[state=checked]:border-gray-50 dark:[&:has([data-state=checked])]:border-gray-50"
-              htmlFor="wallet"
-            >
+            <Label htmlFor="wallet" className="flex flex-col items-center">
               <WalletCardsIcon className="mb-3 h-6 w-6" />
               Portefeuille numérique
             </Label>
           </div>
           <div>
             <RadioGroupItem className="peer sr-only" id="bank" value="bank" />
-            <Label
-              className="flex flex-col items-center justify-between rounded-md border-2 border-gray-100 bg-white p-4 hover:bg-gray-100 hover:text-gray-900 peer-data-[state=checked]:border-gray-900 [&:has([data-state=checked])]:border-gray-900 dark:border-gray-800 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:peer-data-[state=checked]:border-gray-50 dark:[&:has([data-state=checked])]:border-gray-50"
-              htmlFor="bank"
-            >
+            <Label htmlFor="bank" className="flex flex-col items-center">
               <BanknoteIcon className="mb-3 h-6 w-6" />
               Virement bancaire
             </Label>
@@ -52,63 +79,52 @@ export default function Component() {
         </RadioGroup>
         <div className="grid gap-2">
           <Label htmlFor="name">Nom</Label>
-          <Input id="name" placeholder="Prénom Nom" />
+          <Input id="name" name="name" value={formData.name} onChange={handleInputChange} placeholder="Prénom Nom" />
         </div>
         <div className="grid gap-2">
           <Label htmlFor="number">Numéro de carte</Label>
-          <Input id="number" placeholder="" />
+          <Input id="number" name="number" value={formData.number} onChange={handleInputChange} placeholder="" />
         </div>
         <div className="grid grid-cols-3 gap-4">
           <div className="grid gap-2">
             <Label htmlFor="month">Expire</Label>
-            <Select>
+            <Select onValueChange={(value) => handleSelectChange('month', value)}>
               <SelectTrigger id="month">
                 <SelectValue placeholder="Mois" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="1">Janvier</SelectItem>
-                <SelectItem value="2">Février</SelectItem>
-                <SelectItem value="3">Mars</SelectItem>
-                <SelectItem value="4">Avril</SelectItem>
-                <SelectItem value="5">Mai</SelectItem>
-                <SelectItem value="6">Juin</SelectItem>
-                <SelectItem value="7">Juillet</SelectItem>
-                <SelectItem value="8">Août</SelectItem>
-                <SelectItem value="9">Septembre</SelectItem>
-                <SelectItem value="10">Octobre</SelectItem>
-                <SelectItem value="11">Novembre</SelectItem>
-                <SelectItem value="12">Décembre</SelectItem>
+                {[...Array(12).keys()].map(i => (
+                  <SelectItem key={i} value={i + 1}>{new Date(0, i).toLocaleString('default', { month: 'long' })}</SelectItem>
+                ))}
               </SelectContent>
             </Select>
           </div>
           <div className="grid gap-2">
             <Label htmlFor="year">Année</Label>
-            <Select>
+            <Select onValueChange={(value) => handleSelectChange('year', value)}>
               <SelectTrigger id="year">
                 <SelectValue placeholder="Année" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="2024">2024</SelectItem>
-                <SelectItem value="2025">2025</SelectItem>
-                <SelectItem value="2026">2026</SelectItem>
-                <SelectItem value="2027">2027</SelectItem>
-                <SelectItem value="2028">2028</SelectItem>
-                <SelectItem value="2029">2029</SelectItem>
+                {[...Array(10).keys()].map(i => (
+                  <SelectItem key={i} value={2024 + i}>{2024 + i}</SelectItem>
+                ))}
               </SelectContent>
             </Select>
           </div>
           <div className="grid gap-2">
             <Label htmlFor="cvc">CVC</Label>
-            <Input id="cvc" placeholder="CVC" />
+            <Input id="cvc" name="cvc" value={formData.cvc} onChange={handleInputChange} placeholder="CVC" />
           </div>
         </div>
       </CardContent>
       <CardFooter>
-        <Button className="w-full">Continuer</Button>
+        <Button className="w-full" onClick={handleSubmit}>Continuer</Button>
       </CardFooter>
     </Card>
-  )
+  );
 }
+
 
 function BanknoteIcon(props) {
   return (

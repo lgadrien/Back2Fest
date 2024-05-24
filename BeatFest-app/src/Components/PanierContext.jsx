@@ -1,5 +1,3 @@
-// PanierContext.js
-
 import React, { useState, useEffect, useContext } from 'react';
 import Cookies from 'js-cookie';
 
@@ -47,8 +45,13 @@ export const PanierProvider = ({ children }) => {
     setPanier(nouveauPanier);
   };
 
+  const supprimerArticle = (index) => {
+    const nouveauPanier = panier.filter((_, i) => i !== index);
+    setPanier(nouveauPanier);
+  };
+
   return (
-    <PanierContext.Provider value={{ panier, ajouterAuPanier, viderPanier, modifierQuantite }}>
+    <PanierContext.Provider value={{ panier, ajouterAuPanier, viderPanier, modifierQuantite, supprimerArticle }}>
       {children}
     </PanierContext.Provider>
   );
